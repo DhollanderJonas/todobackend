@@ -1,5 +1,3 @@
-import jenkins.model.Jenkins
-
 node {
     checkout scm
 
@@ -22,15 +20,6 @@ node {
             sh "make login"
         }
         sh "make publish"
-
-        stage 'Deploy release'
-        sh "printf \$(git rev-parse --short HEAD) > tag.tmp"
-        def imageTag = readFile 'tag.tmp'
-        build job: DEPLOY_JOB, parameters: [[
-            $class: 'StringParameterValue',
-            name: 'IMAGE_TAG',
-            value: 'dudusolutions/linuxtestcd:' + imageTag
-        ]]
     }
     finally {
         stage 'Collect test reports'
