@@ -27,7 +27,7 @@ node {
         build job: DEPLOY_JOB, parameters: [[
             $class: 'StringParameterValue',
             name: 'IMAGE_TAG',
-            value: 'DhollanderJonas/todobackend:' + imageTag
+            value: 'dudusolutions/linuxtestcd:' + imageTag
         ]]
     }
     finally {
