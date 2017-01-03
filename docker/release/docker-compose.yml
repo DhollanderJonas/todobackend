@@ -1,6 +1,10 @@
-app:
-  build: ../../
-  dockerfile: docker/release/Dockerfile
+app-client:
+  image: jmenga/todobackend-client
+  ports: 
+   - "3000:3000"
+
+app-backend:
+  image: dudusolutions/linuxtestcd
   links:
     - db
   environment:
@@ -32,7 +36,7 @@ nginx:
   build: .
   dockerfile: Dockerfile.nginx
   links:
-    - app
+    - app-backend
   ports:
     - "8000:8000"
   volumes_from:
