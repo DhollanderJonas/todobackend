@@ -1,7 +1,7 @@
 # Project variables
 PROJECT_NAME ?= todobackend
-ORG_NAME ?= jmenga
-REPO_NAME ?= todobackend
+ORG_NAME ?= dudusolutions
+REPO_NAME ?= linuxtestcd
 
 # Filenames
 DEV_COMPOSE_FILE := docker/dev/docker-compose.yml
