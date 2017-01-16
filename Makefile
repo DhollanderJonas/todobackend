@@ -1,5 +1,5 @@
 # Project variables
-PROJECT_NAME ?= todobackend
+PROJECT_NAME ?= linuxtestcd
 ORG_NAME ?= dudusolutions
 REPO_NAME ?= linuxtestcd
 
