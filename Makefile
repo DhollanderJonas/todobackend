@@ -2,8 +2,7 @@
 PROJECT_NAME ?= todobackend
 ORG_NAME ?= dudusolutions
 REPO_NAME ?= linuxtestcd
-ORG_NAME1 ?= dudusolutions
-REPO_NAME1 ?= linuxtestcd
+
 
 # Filenames
 DEV_COMPOSE_FILE := docker/dev/docker-compose.yml
@@ -98,7 +97,7 @@ clean:
 
 tag: 
 	${INFO} "Tagging release image with tags $(TAG_ARGS)..."
-	@ $(foreach tag,$(TAG_ARGS), docker tag $(IMAGE_ID) $(DOCKER_REGISTRY)/$(ORG_NAME1)/$(REPO_NAME1):$(tag);)
+	@ $(foreach tag,$(TAG_ARGS), docker tag $(IMAGE_ID) $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME):$(tag);)
 	${INFO} "Tagging complete"
 
 buildtag:
@@ -117,7 +116,7 @@ logout:
 	${INFO} "Logged out of Docker registry $$DOCKER_REGISTRY"	
 
 publish:
-	${INFO} "Publishing release image $(IMAGE_ID) to $(DOCKER_REGISTRY)/$(ORG_NAME1)/$(REPO_NAME1)..."
+	${INFO} "Publishing release image $(IMAGE_ID) to $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME1)..."
 	@ $(foreach tag,$(shell echo $(REPO_EXPR)), docker push $(tag);)
 	${INFO} "Publish complete"
 	
