@@ -4,7 +4,7 @@ app-client:
    - "3000:3000"
 
 app-backend:
-  image: dudusolutions/linuxtestcd
+  image: jmenga/todobackend
   links:
     - db
   environment:
