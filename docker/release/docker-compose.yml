@@ -1,9 +1,6 @@
-app-client:
-  image: jmenga/todobackend-client
-  ports: 
-   - "3000:3000"
 
-app-backend:
+
+app:
   image: jmenga/todobackend
   links:
     - db
