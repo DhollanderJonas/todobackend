@@ -1,10 +1,10 @@
 app-client:
-  image: jmenga/todobackend-client
+  image: dudusolutions/todo-client
   ports: 
    - "3000:3000"
    
 app-backend:
-  image: jmenga/todobackend
+  image: dudusolutions/todo-backend
   links:
     - db
   environment:
