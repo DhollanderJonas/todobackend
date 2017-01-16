@@ -115,7 +115,7 @@ logout:
 	${INFO} "Logged out of Docker registry $$DOCKER_REGISTRY"	
 
 publish:
-	${INFO} "Publishing release image $(IMAGE_ID) to $(DOCKER_REGISTRY)/$(ORG_NAME)/$(REPO_NAME)..."
+	${INFO} "Publishing release image $(IMAGE_ID) to $(DOCKER_REGISTRY)/dudusolutions/linuxtestcd..."
 	@ $(foreach tag,$(shell echo $(REPO_EXPR)), docker push $(tag);)
 	${INFO} "Publish complete"
 	
