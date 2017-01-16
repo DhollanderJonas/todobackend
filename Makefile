@@ -1,7 +1,7 @@
 # Project variables
 PROJECT_NAME ?= todobackend
-ORG_NAME ?= jmenga
-REPO_NAME ?= todobackend
+ORG_NAME ?= dudusolutions
+REPO_NAME ?= linuxtestcd
 
 # Filenames
 DEV_COMPOSE_FILE := docker/dev/docker-compose.yml
@@ -12,7 +12,7 @@ REL_PROJECT := $(PROJECT_NAME)$(BUILD_ID)
 DEV_PROJECT := $(REL_PROJECT)dev
 
 # Application Service Name - must match Docker Compose release specification application service name
-APP_SERVICE_NAME := app
+APP_SERVICE_NAME := app-backend
 
 # Build tag expression - can be used to evaulate a shell expression at runtime
 BUILD_TAG_EXPRESSION ?= date -u +%Y%m%d%H%M%S
