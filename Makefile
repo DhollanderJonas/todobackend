@@ -1,7 +1,7 @@
 # Project variables
 PROJECT_NAME ?= todobackend
 ORG_NAME ?= dudusolutions
-REPO_NAME ?= linuxtestcd
+REPO_NAME ?= todo-backend
 
 
 # Filenames
