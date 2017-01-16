@@ -1,7 +1,7 @@
 # Project variables
 PROJECT_NAME ?= todobackend
-ORG_NAME ?= jmenga
-REPO_NAME ?= todobackend
+ORG_NAME ?= dudusolutions
+REPO_NAME ?= linuxtestcd
 ORG_NAME1 ?= dudusolutions
 REPO_NAME1 ?= linuxtestcd
 
