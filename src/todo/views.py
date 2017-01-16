@@ -19,5 +19,5 @@ class TodoItemViewSet(viewsets.ModelViewSet):
 
   # Deletes all todo items
   def delete(self, request):
-    TodoItem.objects.all().delete()
+   # TodoItem.objects.all().delete()
     return Response(status=status.HTTP_204_NO_CONTENT) 
