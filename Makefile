@@ -92,6 +92,7 @@ demo:
 	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) build cache
 	${INFO} "Ensuring database is ready..."
 	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) run --rm agent
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) up test
 	
 	${INFO} "Creating builder image..."
 	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) build builder
