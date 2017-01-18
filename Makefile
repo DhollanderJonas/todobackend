@@ -83,6 +83,38 @@ release:
 	@ docker cp $$(docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) ps -q test):/reports/. reports
 	${CHECK} $(REL_PROJECT) $(REL_COMPOSE_FILE) test
 	${INFO} "Acceptance testing complete"
+	
+demo:
+	${INFO} "Pulling latest images..."
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) pull
+	${INFO} "Building images..."
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) build --pull test
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) build cache
+	${INFO} "Ensuring database is ready..."
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) run --rm agent
+	
+	${INFO} "Creating builder image..."
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) build builder
+	${INFO} "Building application artifacts..."
+	@ docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) up builder
+	${INFO} "Copying application artifacts..."
+	@ docker cp $$(docker-compose -p $(DEV_PROJECT) -f $(DEV_COMPOSE_FILE) ps -q builder):/wheelhouse/. target
+
+	${INFO} "Pulling latest images..."
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) pull test
+	${INFO} "Building images..."
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build app-client
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build app-backend
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build webroot
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) build --pull nginx
+	${INFO} "Ensuring database is ready..."
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm agent
+	${INFO} "Collecting static files..."
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm app-backend manage.py collectstatic --noinput
+	${INFO} "Running database migrations..."
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) run --rm app-backend manage.py migrate --noinput
+	${INFO} "Starting Application"
+	@ docker-compose -p $(REL_PROJECT) -f $(REL_COMPOSE_FILE) up -d
 
 clean:
 	${INFO} "Destroying development environment..."
